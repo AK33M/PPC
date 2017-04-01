@@ -19,13 +19,19 @@ namespace PaddyPowerChallenge.Models
         public Market(string MarketName, bool PredictCorrectScore)
             : this()
         {
-
+			this.MarketName = MarketName;
+			this.PredictCorrectScore = PredictCorrectScore;
         }
 
         public void AddResult(ActualResult result)
         {
             Result = result;
         }
+
+		public void AddSelection(BaseSelection selection) 
+		{
+			Selections.Add(selection);
+		}
 
         public IList<bool> Payouts()
         {

@@ -36,8 +36,10 @@ namespace PaddyPowerChallenge.Models
 		private decimal ConvertPriceToDecimal(string price)
 		{
 			var splitNumber = price.Trim().Split('/');
-            int.TryParse(splitNumber[0], out int topNumber);
-            int.TryParse(splitNumber[1], out int bottomNumber);
+			int topNumber;
+			int bottomNumber;
+            int.TryParse(splitNumber[0], out topNumber);
+            int.TryParse(splitNumber[1], out bottomNumber);
 
             if (bottomNumber != 0)
 			{

@@ -24,5 +24,10 @@ namespace PaddyPowerChallenge.Models
             this.TeamB = TeamB;
             this.EventDateTime = EventDateTime;
         }
+
+		public void AddMarket(Market market)
+		{
+			Markets.Add(market);
+		}
     }
 }

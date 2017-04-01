@@ -10,5 +10,16 @@ namespace PaddyPowerChallenge.Models
     {
         public string Name { get; set; }
         public IList<Bet> Bets { get; set; }
-    }
+
+		public Punter(string Name)
+		{
+			this.Name = Name;
+			this.Bets = new List<Bet>();
+		}
+
+		public void PlaceBet(Bet bet)
+		{
+			Bets.Add(bet);
+		}
+	}
 }
