@@ -1,23 +1,33 @@
 ﻿using System;
-namespace PaddyPowerChallenge
+using System.Text;
+
+namespace PaddyPowerChallenge.Models
 {
 	public class CorrectScoreSelection : BaseSelection
 	{
-		public CorrectScoreSelection(string TeamA, string Odds, string CorrectScore, WinLossDrawEnum ProposedOutcome)
-			: base(TeamA, Odds, ProposedOutcome)
+		public CorrectScoreSelection(string TeamName, string Price, string ProposedScore, WinLossDrawEnum ProposedOutcome)
+			: base(TeamName, Price, ProposedOutcome)
 		{
-			this.CorrectScore = CorrectScore;
+			this.ProposedScore = ProposedScore;
 		}
 
-		public string CorrectScore { get; set; }
+		public string ProposedScore { get; set; }
 
-		public bool DoesPayOut(WinLossDrawEnum ActualOutcome, string ActualScore)
+		public override bool DoesPayOut(WinLossDrawEnum ActualOutcome, string ActualScore)
 		{
-			if (ActualOutcome == ProposedOutCome && ActualScore == CorrectScore) 
+			if (!string.IsNullOrWhiteSpace(ActualScore)) 
 			{
-				return true;
+                return base.DoesPayOut(ActualOutcome) && ActualScore == ProposedScore;
 			}
-			return false;
+
+			return base.DoesPayOut(ActualOutcome);
 		}
-	}
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine($"{TeamName} to {ProposedOutCome.ToString()} by {ProposedScore} @{Price}");
+            return sb.ToString();
+        }
+    }
 }
