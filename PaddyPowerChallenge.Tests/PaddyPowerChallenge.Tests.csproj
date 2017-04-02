@@ -43,6 +43,7 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BookMakerTest.cs" />
     <Compile Include="Test.cs" />
   </ItemGroup>
   <ItemGroup>

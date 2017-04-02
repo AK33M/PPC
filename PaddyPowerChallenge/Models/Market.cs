@@ -1,55 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace PaddyPowerChallenge.Models
 {
-    public class Market
-    {
-        public string MarketName { get; set; }
-        public bool PredictCorrectScore { get; set; }
-        public ActualResult Result { get; set; }
-        public IList<BaseSelection> Selections { get; set; }
+	public class Market
+	{
+		//Properties
+		private string MarketName { get; set; }
+		private MarketResult Result { get; set; }
+		private IList<BaseSelection> Selections { get; set; }
 
-
-        public Market()
-        {
-            Selections = new List<BaseSelection>();
-        }
-
-        public Market(string MarketName, bool PredictCorrectScore)
-            : this()
-        {
+		//Constructor
+		public Market(string MarketName)
+		{
+			this.Selections = new List<BaseSelection>();
 			this.MarketName = MarketName;
-			this.PredictCorrectScore = PredictCorrectScore;
-        }
+		}
 
-        public void AddResult(ActualResult result)
-        {
-            Result = result;
-        }
+		//Public Methods
+		public void AddResult(MarketResult result)
+		{
+			Result = result;
+			OnResultAdded(Result);
+		}
 
-		public void AddSelection(BaseSelection selection) 
+		public void AddSelection(BaseSelection selection)
 		{
 			Selections.Add(selection);
 		}
 
-        public IList<bool> Payouts()
-        {
-            var payouts = new List<bool>();
-
-            if (Result == null)
-            {
-                throw new InvalidOperationException("The result is not in yet.");
-            }
-
-            foreach (var sel in Selections)
-            {
-                var payout = sel.DoesPayOut(Result.ActualOutcome, Result.ActualScore);
-
-                payouts.Add(payout);
-            }
-
-            return payouts;
-        }
-    }
+		//Private Methods
+		private void OnResultAdded(MarketResult result)
+		{
+			if (Selections != null)
+			{
+				foreach (var sel in Selections)
+				{
+					sel.CheckIfWinner(result.TeamName, result.ActualOutcome, result.ActualScore);
+				}
+			}
+		}
+	}
 }

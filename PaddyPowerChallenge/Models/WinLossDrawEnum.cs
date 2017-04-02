@@ -1,10 +1,8 @@
-﻿using System;
-namespace PaddyPowerChallenge
+﻿namespace PaddyPowerChallenge
 {
-	public enum WinLossDrawEnum
+	public enum WinDrawEnum
 	{
 		Win,
-		Loss,
 		Draw
 	}
 }

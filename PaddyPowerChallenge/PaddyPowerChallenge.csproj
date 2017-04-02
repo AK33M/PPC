@@ -57,17 +57,19 @@
     <Content Include="Global.asax" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BetCreatedEventArgs.cs" />
+    <Compile Include="BetPaidOutEventArgs.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BaseSelection.cs" />
     <Compile Include="Models\Bet.cs" />
     <Compile Include="Models\BookMaker.cs" />
-    <Compile Include="Models\Event.cs" />
-    <Compile Include="Models\ActualResult.cs" />
+    <Compile Include="Models\SportEvent.cs" />
+    <Compile Include="Models\MarketResult.cs" />
     <Compile Include="Models\Market.cs" />
     <Compile Include="Models\Punter.cs" />
-    <Compile Include="Models\WinLossDrawSelection.cs" />
+    <Compile Include="Models\WinDrawSelection.cs" />
     <Compile Include="Models\CorrectScoreSelection.cs" />
     <Compile Include="Models\WinLossDrawEnum.cs" />
   </ItemGroup>

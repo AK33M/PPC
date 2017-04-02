@@ -1,25 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace PaddyPowerChallenge.Models
 {
-    public class Punter
-    {
-        public string Name { get; set; }
-        public IList<Bet> Bets { get; set; }
+	public class Punter
+	{
+		//Properties
+		private string Name { get; set; }
+		private Bet Bet { get; set; }
+		private decimal TotalWinnings { get; set; }
 
+
+		//Constructor
 		public Punter(string Name)
 		{
 			this.Name = Name;
-			this.Bets = new List<Bet>();
 		}
 
+		//Public Methods
 		public void PlaceBet(Bet bet)
 		{
-			Bets.Add(bet);
+			Bet = bet;
+		}
+
+		public void CollectWinnings()
+		{
+			if (Bet != null)
+			{
+				TotalWinnings = Bet.GetBetPayOut();
+			}
+		}
+
+		public override string ToString()
+		{
+			var sb = new StringBuilder();
+			sb.AppendLine($"{Name} placed {Bet.Stake} on {Bet.Selection.ToString()}");
+			sb.AppendLine($"{Name} won {TotalWinnings.ToString("C")} from {Bet.Selection.ToString()}");
+			sb.AppendLine("*******");
+			return sb.ToString();
 		}
 	}
 }
